@@ -2,9 +2,9 @@
 
 This is the [DBL Venus Exploration website](https://www.es.ele.tue.nl/education/oo2/) into markdown form. This reader contains all the information that the website does. Enjoy. 
 
-## Note
+## Note's
 
-Here is a list of links:
+We are group 17, and have locker 45. Here is a list of links:
 -   [Google Drive](https://drive.google.com/drive/folders/1ZX2TFxr7pBkVThMW8cO832ZpsedXFqyV?usp=sharing)
 -   [GitHub](https://github.com/St-H123/TUe-DBL-Venus-Exploration/)
 
@@ -145,7 +145,7 @@ With the switch in the USB position, the DOUT pin the wireless module is connect
 
 ### Hardware components
 
-Detailed information on how to use the various components on the robot can also be found on the Arduino website. And please see the [hardware section](#hardware-components) for more information.
+Detailed information on how to use the various components on the robot can also be found on the Arduino website. And please see the [equipment section](#equipment) for more information.
 
 ### I/O pin connections
 
