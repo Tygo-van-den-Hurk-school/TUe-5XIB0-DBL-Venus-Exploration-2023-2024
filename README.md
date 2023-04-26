@@ -145,7 +145,7 @@ With the switch in the USB position, the DOUT pin the wireless module is connect
 
 ### Hardware components
 
-Detailed information on how to use the various components on the robot can also be found on the Arduino website. And please see the [hardware section](#equipment) for more information.
+Detailed information on how to use the various components on the robot can also be found on the Arduino website. And please see the [equipment section](#equipment) for more information.
 
 ### I/O pin connections
 
