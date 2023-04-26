@@ -2,6 +2,12 @@
 
 This is the [DBL Venus Exploration website](https://www.es.ele.tue.nl/education/oo2/) into markdown form. This reader contains all the information that the website does. Enjoy. 
 
+## Note
+
+Here is a list of links:
+-   [Google Drive](https://drive.google.com/drive/folders/1ZX2TFxr7pBkVThMW8cO832ZpsedXFqyV?usp=sharing)
+-   [GitHub](https://github.com/St-H123/TUe-DBL-Venus-Exploration/)
+
 ## Table of contents
 
 -   [Assignment](#assignment)
