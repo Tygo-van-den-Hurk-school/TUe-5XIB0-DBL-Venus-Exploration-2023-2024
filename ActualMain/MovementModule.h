@@ -1,7 +1,10 @@
 #include <Servo.h>
 
-#define LEFT_MOTOR_PIN 12                           
-#define RIGHT_MOTOR_PIN 13  
+// 11 is the head
+#define LEFT_MOTOR_PIN 12
+#define RIGHT_MOTOR_PIN 13
+#define FORWARD -1
+#define NEUTRAL 1500
 
 struct Coordinates
 {
