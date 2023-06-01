@@ -1,14 +1,14 @@
 #include <Servo.h>
 
 // 11 is the head
-#define LEFT_MOTOR_PIN 12
-#define RIGHT_MOTOR_PIN 13
+#define LEFT_MOTOR_PIN    12
+#define RIGHT_MOTOR_PIN   13
 
-#define FORWARDS    -1
-#define NOT_MOVING  0
-#define BACKWARDS   1
+#define NEUTRAL           1500
 
-#define NEUTRAL 1500
+#define FORWARDS          -1
+#define NOT_MOVING         0
+#define BACKWARDS          1
 
 struct Coordinates {
   float x, y;
@@ -36,7 +36,7 @@ class Movement {
      * forward, is equal to BACKWARD if going backwards, and is equal to 
      * NOT_MOVING if not in motion.
      */
-    byte movementDirection = NOT_MOVING;
+    short movementDirection = NOT_MOVING;
 
     /** Stores the angle with which the robot is moving */
     float angle = 0;

@@ -5,10 +5,19 @@ Movement movement = Movement();
 
 /* Class definitions for the  */
 void setup() {
+  Serial.begin(9600);
+  Serial.println("test");
   movement.stop();
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  movement.moveBackward(512);
+  movement.moveForward(499);
+  delay(2000);
+  movement.stop();
+  delay(2000);
+  movement.moveBackward(499);
+  delay(2000);
+    movement.stop();
+  delay(2000);
 }

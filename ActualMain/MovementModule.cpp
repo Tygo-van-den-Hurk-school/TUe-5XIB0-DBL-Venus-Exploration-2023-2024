@@ -1,4 +1,6 @@
 #include "MovementModule.h"
+#include <Arduino.h>
+// #include <Serial.h>
 
 Movement::Movement(){
   
@@ -7,8 +9,6 @@ Movement::Movement(){
 
   this->leftWheel.attach(LEFT_MOTOR_PIN);
   this->rightWheel.attach(RIGHT_MOTOR_PIN); 
-
-  this->stop();
 }
 
 void Movement::moveForward(const int SPEED){
@@ -24,14 +24,14 @@ void Movement::moveForward(const int SPEED){
   const bool WAS_ALREADY_MOVING = (this->movementDirection == FORWARDS);
   if (WAS_ALREADY_MOVING) {
     Serial.println("FIM");
-    return
+    return;
   }
 
   Serial.println("Fm");
 
   this->leftWheel.writeMicroseconds(NEUTRAL + (FORWARDS * SPEED));
   this->rightWheel.writeMicroseconds(NEUTRAL - (FORWARDS * SPEED));
-  this->movementDirection = FORWARD;
+  this->movementDirection = FORWARDS;
 }
 
 void Movement::moveBackward(const int SPEED){
@@ -47,13 +47,13 @@ void Movement::moveBackward(const int SPEED){
   const bool WAS_ALREADY_MOVING = (this->movementDirection == BACKWARDS);
   if (WAS_ALREADY_MOVING) {
     Serial.println("BIM");
-    return
+    return;
   }
 
   Serial.println("Bm");
 
-  this->leftWheel.writeMicroseconds(NEUTRAL - (FORWARD * SPEED));
-  this->rightWheel.writeMicroseconds(NEUTRAL - (FORWARD * SPEED));
+  this->leftWheel.writeMicroseconds(NEUTRAL - (BACKWARDS * SPEED));
+  this->rightWheel.writeMicroseconds(NEUTRAL - (BACKWARDS * SPEED));
   this->movementDirection = BACKWARDS;
 }
 
