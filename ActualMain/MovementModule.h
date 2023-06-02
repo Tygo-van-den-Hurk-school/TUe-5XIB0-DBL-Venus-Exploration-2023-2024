@@ -38,7 +38,7 @@ class Movement {
      */
     short movementDirection = NOT_MOVING;
 
-    /** Stores the angle with which the robot is moving */
+    /** Stores the angle with which the robot is moving. */
     float angle = 0;
 
   public:
@@ -51,7 +51,7 @@ class Movement {
 
     /**
      * @brief Moves the robot forward indefinitely with a certain speed.
-     * @pre SPEED < 499 && SPEED > 0
+     * @pre SPEED < 499 && SPEED > 0 && this->movementDirection != FORWARD
      * @param (int) SPEED the speed that with which the robot should move.
      * @post this->movementDirection == FORWARD
      * @since 1.0
@@ -60,14 +60,27 @@ class Movement {
 
     /**
      * @brief Moves the robot backwards indefinitely with a certain speed.
-     * @pre SPEED < 499 && SPEED > 0
+     * @pre SPEED < 499 && SPEED > 0 this->movementDirection != BACKWARDS
      * @param (int) SPEED the speed that with which the robot should move.
      * @post this->movementDirection == BACKWARDS
      * @since 1.0
      */
     void moveBackward(int);
-
+  
+    /**
+     * @brief Turns the robot a certain amount of degrees to the left, or the right.
+     * @pre ANGLE < 360 && ANGLE > 0
+     * @post TODO fill this in
+     * @since 1.0
+     */
     void turn(float);
+  
+    /**
+     * @brief Stops the robot from moving.
+     * @pre this->movementDirection != NOT_MOVING
+     * @post this->movementDirection == NOT_MOVING
+     * @since 1.0
+     */
     void stop();
 };
 
