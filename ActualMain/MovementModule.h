@@ -1,3 +1,4 @@
+#pragma once
 #include <Servo.h>
 
 // 11 is the head
