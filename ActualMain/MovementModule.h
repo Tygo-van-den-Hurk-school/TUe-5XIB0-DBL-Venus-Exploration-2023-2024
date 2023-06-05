@@ -1,5 +1,6 @@
 #pragma once
 #include <Servo.h>
+#include <vector>
 
 // 11 is the head
 #define LEFT_MOTOR_PIN    12
@@ -14,6 +15,19 @@
 struct Coordinates {
   float x, y;
 };
+
+/**
+ * @brief Template of how an action can be abstracted such that the bot can run back through its memory
+ * If any action gets performed in this module it will get recorded via a struct looking like this,
+ * @since 1.0
+ */
+struct MovementAction{
+  Coordinates startingCoordinates;
+  int startingAngle;
+  Coordinates endingCoordinates;
+  int endingAngle;
+  int speed;
+}; 
 
 /**
  * @class this class is used to control the robot's movement.
@@ -83,6 +97,12 @@ class Movement {
      * @since 1.0
      */
     void stop();
+
+    /**
+     * @brief Records action history
+     * @since 1.0
+     */
+    std::vector<MovementAction> movementHistory;
 };
 
 

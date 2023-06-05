@@ -5,6 +5,8 @@ Control::Control()
     this->communication = Communication()
     this->movement = Movement()
     this->sensors = Sensors()    
+
+    this->number_of_rocks = INITIAL_NUMBER_OF_ROCKS
 }
 
 void Control::run()
