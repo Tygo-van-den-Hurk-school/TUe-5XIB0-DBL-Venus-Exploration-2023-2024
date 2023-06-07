@@ -7,8 +7,8 @@
 
 class Control {
     private:
-        void grab()
-        void drop()
+        void grab();
+        void drop();
         int numberOfRocksLeft;
         Movement movement;
         Sensors sensors;

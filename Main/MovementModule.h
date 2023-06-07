@@ -1,6 +1,6 @@
 #pragma once
 #include <Servo.h>
-#include <vector>
+//#include <vector>
 
 // 11 is the head
 #define LEFT_MOTOR_PIN    12
@@ -65,6 +65,13 @@ class Movement {
     Movement();
 
     /**
+     * @brief destroys a Movement Instance.
+     * @since 1.0
+     */
+    ~Movement();
+
+
+    /**
      * @brief Moves the robot forward indefinitely with a certain speed.
      * @pre SPEED < 499 && SPEED > 0 && this->movementDirection != FORWARD
      * @param (int) SPEED the speed that with which the robot should move.
@@ -98,11 +105,11 @@ class Movement {
      */
     void stop();
 
-    /**
-     * @brief Records action history
-     * @since 1.0
-     */
-    std::vector<MovementAction> movementHistory;
+    //**
+    // * @brief Records action history
+    // * @since 1.0
+    // */
+    //std::vector<MovementAction> movementHistory;
 };
 
 

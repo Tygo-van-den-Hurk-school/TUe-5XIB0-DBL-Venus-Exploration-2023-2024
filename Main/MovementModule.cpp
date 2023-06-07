@@ -1,6 +1,6 @@
 #include "MovementModule.h"
 #include <Arduino.h>
-// #include <Serial.h>
+//#include <Serial.h>
 
 Movement::Movement(){
   
@@ -9,6 +9,11 @@ Movement::Movement(){
 
   this->leftWheel.attach(LEFT_MOTOR_PIN);
   this->rightWheel.attach(RIGHT_MOTOR_PIN); 
+}
+
+Movement::~Movement(){
+  this->leftWheel.detach();
+  this->rightWheel.detach();
 }
 
 void Movement::moveForward(const int SPEED){
@@ -31,8 +36,10 @@ void Movement::moveForward(const int SPEED){
 
   /* Made the motors go forwards with the speed */ {
     Serial.println("Fm");
-    this->leftWheel.writeMicroseconds(NEUTRAL + (FORWARDS * SPEED));
-    this->rightWheel.writeMicroseconds(NEUTRAL - (FORWARDS * SPEED));
+    for(int posDegrees = 0; posDegrees <= 300; posDegrees++) {
+      leftWheel.write(posDegrees);
+      delay(20);
+    }
     this->movementDirection = FORWARDS;
   }
 }
