@@ -40,13 +40,6 @@ class Movement {
     /** The servo to which it controles the right wheel. */
     Servo rightWheel;
 
-    /** 
-     * Keeps track of if the robot is in motion. is equal to FOWARD if going 
-     * forward, is equal to BACKWARD if going backwards, and is equal to 
-     * NOT_MOVING if not in motion.
-     */
-    short movementDirection = NOT_MOVING;
-
     /** Stores the angle with which the robot is moving. */
     float angle = 0;
 
@@ -97,7 +90,7 @@ class Movement {
      * @post TODO fill this in
      * @since 1.0
      */
-    void leftTurn(float);
+    void rightTurn(float);
   
     /**
      * @brief Stops the robot from moving.

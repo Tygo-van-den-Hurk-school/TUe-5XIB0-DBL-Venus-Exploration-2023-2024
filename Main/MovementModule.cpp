@@ -13,67 +13,67 @@ Movement::~Movement(){
 
 void Movement::moveForward(const int degrees){
   printf("[LOG]: Moving forward.");
-  servoRight.attach(servoPinRight);
-  servoLeft.attach(servoPinLeft);
+  rightWheel.attach(LEFT_MOTOR_PIN);
+  leftWheel.attach(RIGHT_MOTOR_PIN);
 
   for(int posDegrees = 0; posDegrees <= degrees; posDegrees++) {
-    servoLeft.write(posDegrees);
-    servoRight.write(-posDegrees);
+    leftWheel.write(posDegrees);
+    rightWheel.write(-posDegrees);
     delay(20);
   }
 
   printf("[LOG]: Stopped moving forward.");
-  servoRight.detach();
-  servoLeft.detach();
+  rightWheel.detach();
+  leftWheel.detach();
 }
 
 void Movement::moveBackward(const int degrees){
   printf("[LOG]: Moving backward.");
-  servoRight.attach(servoPinRight);
-  servoLeft.attach(servoPinLeft);
+  rightWheel.attach(RIGHT_MOTOR_PIN);
+  leftWheel.attach(LEFT_MOTOR_PIN);
 
   for(int posDegrees = 0; posDegrees <= degrees; posDegrees++) {
-    servoLeft.write(-posDegrees);
-    servoRight.write(posDegrees);
+    leftWheel.write(-posDegrees);
+    rightWheel.write(posDegrees);
     delay(20);
   }
 
   printf("[LOG]: Stopped moving backward.");
-  servoRight.detach();
-  servoLeft.detach();
+  rightWheel.detach();
+  leftWheel.detach();
 }
 
 void Movement::leftTurn(const float angle){
-  printf("[LOG]: Turning left angle degrees : " + angle + ".");
-  servoLeft.attach(servoPinLeft);
+  printf("[LOG]: Turning left angle degrees : %f.", angle);
+  leftWheel.attach(LEFT_MOTOR_PIN);
   for(int posDegrees = 0; posDegrees <= angle; posDegrees++) {
-    servoLeft.write(posDegrees);
+    leftWheel.write(posDegrees);
     delay(20);
   }
 
   printf("[LOG]: Stopped turning left.");
-  servoLeft.detach();
+  leftWheel.detach();
 }
 
 void Movement::rightTurn(const float angle){
-  printf("[LOG]: Turning right angle degrees : " + angle + ".");
-  servoRight.attach(servoPinRight);
+  printf("[LOG]: Turning right angle degrees : %f.", angle);
+  rightWheel.attach(RIGHT_MOTOR_PIN);
   for(int posDegrees = 0; posDegrees <= angle; posDegrees++) {
-    servoRight.write(posDegrees);
+    rightWheel.write(posDegrees);
     delay(20);
   }
 
   printf("[LOG]: Stopped turning right.");
-  servoRight.detach();
+  rightWheel.detach();
 }
 
 void Movement::stop(){
-  servoRight.attach(servoPinRight);
-  servoLeft.attach(servoPinLeft);
+  rightWheel.attach(RIGHT_MOTOR_PIN);
+  leftWheel.attach(LEFT_MOTOR_PIN);
 
-  servoRight.write(0);
-  servoLeft.write(0);
+  rightWheel.write(0);
+  leftWheel.write(0);
 
-  servoRight.detach();
-  servoLeft.detach();
+  rightWheel.detach();
+  leftWheel.detach();
 }

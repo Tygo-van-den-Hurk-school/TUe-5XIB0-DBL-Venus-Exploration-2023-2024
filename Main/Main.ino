@@ -1,9 +1,11 @@
 #include "MovementModule.h"
 #include "SensorModule.h"
 #include "CommunicationModule.h"
+#include <Arduino.h>
+#include <Servo.h>
 
 #define HEAD_PIN 25
-#define PIN_CLAWS 26
+#define CLAWS_PIN 26
 
 Movement movement;
 Sensors sensors;
@@ -16,7 +18,7 @@ Servo servoClaws;
 
 
 void clawsTurn(){
-  servoClaws.attach(servoPinClaws);
+  servoClaws.attach(CLAWS_PIN);
   for(int posDegrees = 0; posDegrees <= 90; posDegrees++) {
     servoClaws.write(posDegrees);
     delay(20);
@@ -28,7 +30,7 @@ void clawsTurn(){
 }
 
 void headTurn(){
-  servoHead.attach(servoPinHead);
+  servoHead.attach(HEAD_PIN);
   // if something detected at x angle store that angle
   for(int posDegrees = 0; posDegrees <= 90; posDegrees++) {
     servoHead.write(posDegrees);
@@ -60,5 +62,6 @@ void setup() {
 }
 
 void loop() {
+
     
 }
