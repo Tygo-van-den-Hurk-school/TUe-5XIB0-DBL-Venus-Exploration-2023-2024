@@ -14,8 +14,8 @@ class Communication
     public:
         Communication();
         ~Communication();
-        void send();
-        void onReceive();
+        int send();
+        void onReceive(const uint8_t * mac, const uint8_t * incomingData, int len);
 
     private:
         void receiverSetup();

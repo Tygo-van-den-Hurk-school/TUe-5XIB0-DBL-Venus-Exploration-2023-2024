@@ -60,10 +60,32 @@ void Communication::receiverSetup(){
     }
     // Once ESPNow is successfully Init, we will register for recv CB to
     // get recv packer info
-    esp_now_register_recv_cb(OnDataRecv);
+    esp_now_register_recv_cb(onReceive);
 }
 
 
-void Communication::send(sendMessage myData){
+int Communication::send(sendMessage myData){
     esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
+    // checking if it worked
+        if (result == ESP_OK) {
+          Serial.println("[CommunicationModule]: Succes, message was send.");
+          return 0;
+          
+        }
+        else if (result != ESP_OK){
+          Serial.printf("[CommunicationModule]: Error %d, unable to send message\n", errorCode);
+          return 1;
+        } 
 }
+
+void Communication::onReceive(const uint8_t * mac, const uint8_t * incomingData, int len) {
+    memcpy(&myData, incomingData, sizeof(myData));
+    Serial.print("Bytes received: ");
+    Serial.println(len);
+    Serial.printf("Status: %s\n", myData.status);
+    Serial.printf("Lock: %s\n", myData.lock ? "true" : "false");
+    Serial.printf("Is the key activated: %d\n", myData.emergencyPressed);
+    Serial.println();
+    ActivateLock(myData.lock);
+}
+    
