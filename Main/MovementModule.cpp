@@ -1,105 +1,79 @@
 #include "MovementModule.h"
 #include <Arduino.h>
-//#include <Serial.h>
+#include <Servo.h>
 
 Movement::Movement(){
   
   this->coordinates.x = 0.0;
   this->coordinates.y = 0.0;
-
-  this->leftWheel.attach(LEFT_MOTOR_PIN);
-  this->rightWheel.attach(RIGHT_MOTOR_PIN); 
 }
 
 Movement::~Movement(){
-  this->leftWheel.detach();
-  this->rightWheel.detach();
 }
 
-void Movement::moveForward(const int SPEED){
+void Movement::moveForward(const int degrees){
+  printf("[LOG]: Moving forward.");
+  servoRight.attach(servoPinRight);
+  servoLeft.attach(servoPinLeft);
 
-  /* validating the Pre-Conditions */ {
-    const bool SPEED_IS_TOO_HIGH = (SPEED > 499);
-    const bool SPEED_IS_TOO_LOW = (SPEED < 0);
-    const bool INVALID_SPEED = (SPEED_IS_TOO_HIGH || SPEED_IS_TOO_LOW);
-    if (INVALID_SPEED) {
-      Serial.println("FIS");
-      return;
-    }
-
-    const bool WAS_ALREADY_MOVING = (this->movementDirection == FORWARDS);
-    if (WAS_ALREADY_MOVING) {
-      Serial.println("FIM");
-      return;
-    }
+  for(int posDegrees = 0; posDegrees <= degrees; posDegrees++) {
+    servoLeft.write(posDegrees);
+    servoRight.write(-posDegrees);
+    delay(20);
   }
 
-  /* Made the motors go forwards with the speed */ {
-    Serial.println("Fm");
-    for(int posDegrees = 0; posDegrees <= 300; posDegrees++) {
-      leftWheel.write(posDegrees);
-      delay(20);
-    }
-    this->movementDirection = FORWARDS;
-  }
+  printf("[LOG]: Stopped moving forward.");
+  servoRight.detach();
+  servoLeft.detach();
 }
 
-void Movement::moveBackward(const int SPEED){
+void Movement::moveBackward(const int degrees){
+  printf("[LOG]: Moving backward.");
+  servoRight.attach(servoPinRight);
+  servoLeft.attach(servoPinLeft);
 
-  /* validating the Pre-Conditions */ {
-    const bool SPEED_IS_TOO_HIGH = (SPEED > 499);
-    const bool SPEED_IS_TOO_LOW = (SPEED < 0);
-    const bool INVALID_SPEED = (SPEED_IS_TOO_HIGH || SPEED_IS_TOO_LOW);
-    if (INVALID_SPEED) {
-      Serial.println("BIS");
-      return;
-    }
-
-    const bool WAS_ALREADY_MOVING = (this->movementDirection == BACKWARDS);
-    if (WAS_ALREADY_MOVING) {
-      Serial.println("BIM");
-      return;
-    }
+  for(int posDegrees = 0; posDegrees <= degrees; posDegrees++) {
+    servoLeft.write(-posDegrees);
+    servoRight.write(posDegrees);
+    delay(20);
   }
 
-  /* Made the motors go backwards with the speed */ {
-    Serial.println("Bm");
-    this->leftWheel.writeMicroseconds(NEUTRAL - (BACKWARDS * SPEED));
-    this->rightWheel.writeMicroseconds(NEUTRAL - (BACKWARDS * SPEED));
-    this->movementDirection = BACKWARDS;
-  }
+  printf("[LOG]: Stopped moving backward.");
+  servoRight.detach();
+  servoLeft.detach();
 }
 
-void Movement::turn(const float ANGLE){
-
-  /* validating the Pre-Conditions */ {
-    const bool ANGLE_IS_TOO_HIGH = (ANGLE > 360);
-    const bool ANGLE_IS_TOO_LOW = (ANGLE < 0);
-    const bool INVALID_ANGLE = (ANGLE_IS_TOO_HIGH || ANGLE_IS_TOO_LOW);
-    if (INVALID_ANGLE) {
-      Serial.println("TIA");
-      return;
-    }
+void Movement::leftTurn(const float angle){
+  printf("[LOG]: Turning left angle degrees : " + angle + ".");
+  servoLeft.attach(servoPinLeft);
+  for(int posDegrees = 0; posDegrees <= angle; posDegrees++) {
+    servoLeft.write(posDegrees);
+    delay(20);
   }
 
-  Serial.println("Tm");
+  printf("[LOG]: Stopped turning left.");
+  servoLeft.detach();
+}
 
+void Movement::rightTurn(const float angle){
+  printf("[LOG]: Turning right angle degrees : " + angle + ".");
+  servoRight.attach(servoPinRight);
+  for(int posDegrees = 0; posDegrees <= angle; posDegrees++) {
+    servoRight.write(posDegrees);
+    delay(20);
+  }
+
+  printf("[LOG]: Stopped turning right.");
+  servoRight.detach();
 }
 
 void Movement::stop(){
+  servoRight.attach(servoPinRight);
+  servoLeft.attach(servoPinLeft);
 
-  /* validating the Pre-Conditions */ {
-    const bool WAS_NOT_EVEN_MOVING = (this->movementDirection == NOT_MOVING);
-    if (WAS_NOT_EVEN_MOVING) {
-      Serial.println("SIM");
-      return;
-    }
-  }
+  servoRight.write(0);
+  servoLeft.write(0);
 
-  /* Stopping the wheels */ {
-    Serial.println("Sm");
-    this->leftWheel.writeMicroseconds(NEUTRAL);
-    this->rightWheel.writeMicroseconds(NEUTRAL);
-    this->movementDirection = NOT_MOVING;
-  }
+  servoRight.detach();
+  servoLeft.detach();
 }

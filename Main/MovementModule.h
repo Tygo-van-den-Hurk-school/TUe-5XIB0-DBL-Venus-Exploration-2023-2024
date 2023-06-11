@@ -6,12 +6,6 @@
 #define LEFT_MOTOR_PIN    12
 #define RIGHT_MOTOR_PIN   13
 
-#define NEUTRAL           1500
-
-#define FORWARDS          -1
-#define NOT_MOVING         0
-#define BACKWARDS          1
-
 struct Coordinates {
   float x, y;
 };
@@ -90,12 +84,20 @@ class Movement {
     void moveBackward(int);
   
     /**
-     * @brief Turns the robot a certain amount of degrees to the left, or the right.
+     * @brief Turns the robot a certain amount of degrees to the left.
      * @pre ANGLE < 360 && ANGLE > 0
      * @post TODO fill this in
      * @since 1.0
      */
-    void turn(float);
+    void leftTurn(float);
+
+    /**
+     * @brief Turns the robot a certain amount of degrees to the right.
+     * @pre ANGLE < 360 && ANGLE > 0
+     * @post TODO fill this in
+     * @since 1.0
+     */
+    void leftTurn(float);
   
     /**
      * @brief Stops the robot from moving.
