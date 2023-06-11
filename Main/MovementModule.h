@@ -100,8 +100,8 @@ class Movement {
      */
     void stop();
 
-    //**
-    // * @brief Records action history
+    // **
+    // * @brief Records action history should be implemented as linked list
     // * @since 1.0
     // */
     //std::vector<MovementAction> movementHistory;

@@ -12,7 +12,7 @@ Movement::~Movement(){
 }
 
 void Movement::moveForward(const int degrees){
-  printf("[LOG]: Moving forward.");
+  printf("[MovementModule]: Moving forward. \n");
   rightWheel.attach(LEFT_MOTOR_PIN);
   leftWheel.attach(RIGHT_MOTOR_PIN);
 
@@ -22,13 +22,13 @@ void Movement::moveForward(const int degrees){
     delay(20);
   }
 
-  printf("[LOG]: Stopped moving forward.");
+  printf("[MovementModule]: Stopped moving forward. \n");
   rightWheel.detach();
   leftWheel.detach();
 }
 
 void Movement::moveBackward(const int degrees){
-  printf("[LOG]: Moving backward.");
+  printf("[MovementModule]: Moving backward. \n");
   rightWheel.attach(RIGHT_MOTOR_PIN);
   leftWheel.attach(LEFT_MOTOR_PIN);
 
@@ -38,32 +38,32 @@ void Movement::moveBackward(const int degrees){
     delay(20);
   }
 
-  printf("[LOG]: Stopped moving backward.");
+  printf("[MovementModule]: Stopped moving backward. \n");
   rightWheel.detach();
   leftWheel.detach();
 }
 
 void Movement::leftTurn(const float angle){
-  printf("[LOG]: Turning left angle degrees : %f.", angle);
+  printf("[MovementModule]: Turning left angle degrees : %f. \n", angle);
   leftWheel.attach(LEFT_MOTOR_PIN);
   for(int posDegrees = 0; posDegrees <= angle; posDegrees++) {
     leftWheel.write(posDegrees);
     delay(20);
   }
 
-  printf("[LOG]: Stopped turning left.");
+  printf("[MovementModule]: Stopped turning left. \n");
   leftWheel.detach();
 }
 
 void Movement::rightTurn(const float angle){
-  printf("[LOG]: Turning right angle degrees : %f.", angle);
+  printf("[MovementModule]: Turning right angle degrees : %f. \n", angle);
   rightWheel.attach(RIGHT_MOTOR_PIN);
   for(int posDegrees = 0; posDegrees <= angle; posDegrees++) {
     rightWheel.write(posDegrees);
     delay(20);
   }
 
-  printf("[LOG]: Stopped turning right.");
+  printf("[MovementModule]: Stopped turning right. \n");
   rightWheel.detach();
 }
 
