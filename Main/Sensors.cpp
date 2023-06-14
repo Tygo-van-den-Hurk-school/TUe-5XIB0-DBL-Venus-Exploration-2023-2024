@@ -1,5 +1,7 @@
 // Libraries
 #include <NewPing.h>
+#include <Wire.h>
+#include <QMC5883L.h>
 
 // Constants
 const int infraredPin = A0;
@@ -12,12 +14,18 @@ const int echoPin = 3;
 const int infraredThreshold = 500; // Adjust this value based on your environment
 const int lightThreshold = 800; // Adjust this value based on your environment
 
-// Ultrasonic sensor instance
+// Sensor instances
 NewPing sonar(trigPin, echoPin);
+QMC5883L compass;
 
 void setup() {
   // Initialize Serial communication
   Serial.begin(9600);
+  
+  // Initialize compass
+  compass.init();
+  compass.setSamplingRate(50); // Adjust the sampling rate as needed
+  compass.setRange(QMC5883L_RANGE_8GA); // Adjust the range as needed
 }
 
 void loop() {
@@ -50,6 +58,12 @@ void loop() {
     Serial.println("Hill detected!");
     // Add code to handle hill detection here
   }
+  
+  // Read compass data
+  compass.read();
+  float heading = compass.getAzimuth();
+  Serial.print("Compass Heading: ");
+  Serial.println(heading);
 
   delay(100); // Adjust the delay as per your requirements
 }
