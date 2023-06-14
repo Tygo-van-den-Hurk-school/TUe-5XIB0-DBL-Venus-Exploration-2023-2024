@@ -1,6 +1,6 @@
 #include "MovementModule.h"
 #include <Arduino.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 Movement::Movement(){
   

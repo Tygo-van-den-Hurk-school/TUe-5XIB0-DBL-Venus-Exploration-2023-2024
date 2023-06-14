@@ -2,7 +2,7 @@
 #include "SensorModule.h"
 #include "CommunicationModule.h"
 #include <Arduino.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 #define HEAD_PIN 25
 #define CLAWS_PIN 26
@@ -53,11 +53,13 @@ void headTurn(){
 
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200); // Always the first line in setupe is used to setup communication
 
   movement = Movement();
   sensors = Sensors();
   communication = Communication();
+  strcpy(communication.myData.status,"something");
+  communication.send(communication.myData);
 
 }
 

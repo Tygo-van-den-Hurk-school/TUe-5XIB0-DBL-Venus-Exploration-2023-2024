@@ -1,5 +1,5 @@
 #pragma once
-#include <Servo.h>
+#include <ESP32Servo.h>
 //#include <vector>
 
 // 11 is the head
@@ -106,5 +106,3 @@ class Movement {
     // */
     //std::vector<MovementAction> movementHistory;
 };
-
-
