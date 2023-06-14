@@ -18,6 +18,13 @@ const int lightThreshold = 800; // Adjust this value based on your environment
 NewPing sonar(trigPin, echoPin);
 QMC5883L compass;
 
+// Function prototypes
+void detectRocks();
+void detectBoundaries();
+void detectCliffs();
+void detectHills();
+void readCompass();
+
 void setup() {
   // Initialize Serial communication
   Serial.begin(9600);
@@ -29,41 +36,56 @@ void setup() {
 }
 
 void loop() {
-  // Read sensor values
-  int infraredValue = analogRead(infraredPin);
-  int leftLightValue = analogRead(leftLightPin);
-  int rightLightValue = analogRead(rightLightPin);
+  detectRocks();
+  detectBoundaries();
+  detectCliffs();
+  detectHills();
+  readCompass();
 
-  // Detect rocks
+  delay(100); // Adjust the delay as per your requirements
+}
+
+// Function to detect rocks
+void detectRocks() {
+  int infraredValue = analogRead(infraredPin);
   if (infraredValue > infraredThreshold) {
     Serial.println("Rock detected!");
     // Add code to handle rock detection here
   }
+}
 
-  // Detect black tape boundaries
+// Function to detect black tape boundaries
+void detectBoundaries() {
+  int leftLightValue = analogRead(leftLightPin);
+  int rightLightValue = analogRead(rightLightPin);
   if (leftLightValue > lightThreshold && rightLightValue > lightThreshold) {
     Serial.println("Boundary detected!");
     // Add code to handle boundary detection here
   }
+}
 
-  // Detect cliffs
+// Function to detect cliffs
+void detectCliffs() {
   long distance = sonar.ping_cm();
   if (distance > 0 && distance <= 10) {
     Serial.println("Cliff detected!");
     // Add code to handle cliff detection here
   }
+}
 
-  // Detect hills
+// Function to detect hills
+void detectHills() {
+  long distance = sonar.ping_cm();
   if (distance > 10 && distance <= 20) {
     Serial.println("Hill detected!");
     // Add code to handle hill detection here
   }
-  
-  // Read compass data
+}
+
+// Function to read compass data
+void readCompass() {
   compass.read();
   float heading = compass.getAzimuth();
   Serial.print("Compass Heading: ");
   Serial.println(heading);
-
-  delay(100); // Adjust the delay as per your requirements
 }
