@@ -19,73 +19,51 @@ NewPing sonar(trigPin, echoPin);
 QMC5883L compass;
 
 // Function prototypes
-void detectRocks();
-void detectBoundaries();
-void detectCliffs();
-void detectHills();
-void readCompass();
+bool detectRocks();
+bool detectBoundaries();
+bool detectCliffs();
+bool detectHills();
+bool readCompass();
 
-void setup() {
-  // Initialize Serial communication
-  Serial.begin(9600);
-  
+Sensors::Sensors() { 
   // Initialize compass
   compass.init();
   compass.setSamplingRate(50); // Adjust the sampling rate as needed
   compass.setRange(QMC5883L_RANGE_8GA); // Adjust the range as needed
 }
 
-void loop() {
-  detectRocks();
-  detectBoundaries();
-  detectCliffs();
-  detectHills();
-  readCompass();
-
-  delay(100); // Adjust the delay as per your requirements
+Sensors::~Sensors(){
+  
 }
 
 // Function to detect rocks
-void detectRocks() {
+bool Sensors::detectRocks() {
   int infraredValue = analogRead(infraredPin);
-  if (infraredValue > infraredThreshold) {
-    Serial.println("Rock detected!");
-    // Add code to handle rock detection here
-  }
+  return infraredValue > infraredThreshold;
 }
 
 // Function to detect black tape boundaries
-void detectBoundaries() {
+bool Sensors::detectBoundaries() {
   int leftLightValue = analogRead(leftLightPin);
   int rightLightValue = analogRead(rightLightPin);
-  if (leftLightValue > lightThreshold && rightLightValue > lightThreshold) {
-    Serial.println("Boundary detected!");
-    // Add code to handle boundary detection here
-  }
+  returnleftLightValue > lightThreshold && rightLightValue > lightThreshold;
 }
 
 // Function to detect cliffs
-void detectCliffs() {
+bool Sensors::detectCliffs() {
   long distance = sonar.ping_cm();
-  if (distance > 0 && distance <= 10) {
-    Serial.println("Cliff detected!");
-    // Add code to handle cliff detection here
-  }
+  return distance > 0 && distance <= 10;
 }
 
 // Function to detect hills
-void detectHills() {
+bool Sensors::detectHills() {
   long distance = sonar.ping_cm();
-  if (distance > 10 && distance <= 20) {
-    Serial.println("Hill detected!");
-    // Add code to handle hill detection here
-  }
+  return distance > 10 && distance <= 20;
 }
 
 // Function to read compass data
-void readCompass() {
+float Sensors::readCompass() {
   compass.read();
   float heading = compass.getAzimuth();
-  Serial.print("Compass Heading: ");
-  Serial.println(heading);
+  return heading;
 }
