@@ -1,12 +1,12 @@
 #include "SensorModule.h"
 
-
-
 Sensors::Sensors() { 
   // Initialize compass
   compass.init();
   compass.setSamplingRate(50); // Adjust the sampling rate as needed
   compass.setRange(QMC5883L_RANGE_8GA); // Adjust the range as needed
+
+  sonar = NewPing(trigPin, echoPin);
 }
 
 Sensors::~Sensors(){
@@ -28,7 +28,7 @@ bool Sensors::detectRocks() {
 bool Sensors::detectBoundaries() {
   int leftLightValue = analogRead(leftLightPin);
   int rightLightValue = analogRead(rightLightPin);
-  returnleftLightValue > lightThreshold && rightLightValue > lightThreshold;
+  return leftLightValue > lightThreshold && rightLightValue > lightThreshold;
 }
 
 // Function to detect cliffs

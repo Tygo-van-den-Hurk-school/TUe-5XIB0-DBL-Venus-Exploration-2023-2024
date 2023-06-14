@@ -3,8 +3,7 @@
 // Libraries
 #include <NewPing.h>
 #include <Wire.h>
-#include <QMC5883L.h>
-
+#include <QMC5883LCompass.h>
 
 class Sensors
 {
@@ -31,6 +30,6 @@ class Sensors
         const int lightThreshold = 800; // Adjust this value based on your environment
         static const int GPIOPinAmbient =4;
         // Sensor instances
-        NewPing sonar(trigPin, echoPin);
-        QMC5883L compass;
+        NewPing sonar;
+        QMC5883LCompass compass;
 };
