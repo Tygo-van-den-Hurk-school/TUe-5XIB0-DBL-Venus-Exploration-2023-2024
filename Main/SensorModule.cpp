@@ -9,7 +9,7 @@ Sensors::Sensors() {
   }
   
   /* Initialize the sonar */ {
-    this -> SONAR = NewPing(trigPin, echoPin);
+    this -> SONAR = NewPing(TRIGGER_SONAR_GPIO_PIN, ECHO_SONAR_GPIO_PIN);
   }
 }
 
@@ -30,7 +30,7 @@ bool Sensors::ambientLight() {
 
 bool Sensors::rockDetected() {
   const int MESSURED_INFRARED_VALUE = analogRead(INFRA_RED_SENSOR_GPIO_PIN);
-  const bool ROCK_DETECTED = (MESSURED_INFRARED_VALUE > infraredThreshold);
+  const bool ROCK_DETECTED = (MESSURED_INFRARED_VALUE > INFRA_RED_THRESHOLD);
   return ROCK_DETECTED;
 }
 
@@ -65,7 +65,7 @@ bool Sensors::hillDetected() {
   const long TWENTY_CENTIMETERS = (20);
   const long DISTANCE = (SONAR.ping_cm());
   
-  const bool DISTANCE_IS_SHORTER_THEN_TWENTY_CENTIMETERS = (DISTANCE <= MAXIMUM);
+  const bool DISTANCE_IS_SHORTER_THEN_TWENTY_CENTIMETERS = (DISTANCE <= TWENTY_CENTIMETERS);
   const bool DISTANCE_IS_FURTHER_THEN_TEN_CENTIMETERS = (DISTANCE > TEN_CENTIMETERS);
   
   const bool DISTANCE_IS_BETWEEN_TEN_AND_TWENTY_CENTIMETERS = (
