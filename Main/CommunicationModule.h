@@ -91,7 +91,7 @@ class Communication {
 
     // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Methods with unknown use cases ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ // TODO fill in what this section is about
     /**
-     * TODO Discribe what the function does.
+     * this function will print if the packet was send succesfull or failed
      *
      * @param (uint8_t) VARIABLE_NAME Discribe it's use case.
      */
