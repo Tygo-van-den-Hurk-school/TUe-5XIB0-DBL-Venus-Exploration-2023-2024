@@ -1,84 +1,116 @@
 #pragma once
 
-// Libraries
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
 #include <NewPing.h>
 #include <Wire.h>
 #include <QMC5883LCompass.h>
 
-// TODO anwser this question: Why is this class not static/singleton? its not modular anyways...
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+/** this is the threshold that the infrared sensor needs to pass for it to offically "detect" something. */
+#define INFRA_RED_THRESHOLD             500
+/** this is the threshold that the light sensor needs to pass for it to offically "detect" something. */
+#define LIGHT_THRESHOLD                 800
 
+/** This is the sampling rate of the compass. */
+#define SAMPLING_RATE_COMPASS           50
+
+/** The pin we will be using for the ambient light sensor. */
+#define AMBIENT_LIGHT_SENSOR_GPIO_PIN   4
+/** The pin we will be using for the infra-red sensor. */
+#define INFRA_RED_SENSOR_GPIO_PIN       A0
+/** The pin we will be using for the left light sensor. That is used to detect bouderies. */
+#define LEFT_LIGHT_SENSOR_GPIO_PIN      A1
+/** The pin we will be using for the right light sensor. That is used to detect bouderies. */
+#define RIGHT_LIGHT_SENSOR_GPIO_PIN     A2
+/** 
+ * The pin we will be using for the sonar. setting this to high will trigger a sonar pulse that 
+ * will then be eventually temperarily set the "ECHO_SONAR_GPIO_PIN" to high.
+ */
+#define TRIGGER_SONAR_GPIO_PIN  2
+/** 
+ * The pin we will be using for the sonar. will then be eventually temperarily set to high,
+ * when the "TRIGGER_SONAR_GPIO_PIN" was set to high.
+ */
+#define ECHO_SONAR_GPIO_PIN     3
+
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~~~ Class ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// TODO anwser this question: Why is this class not static/singleton? its not modular anyways...
 /**
  * @class A class that stores all the sensors, and is capable of returning their values.
+ * @author Tygo van den Hurk, student at TU/e (1705709)
+ * @author David Constantin, student at TU/e (1569139)
+ * // TODO Other people, add your names, and student numbers in the same way, do not remove this comment until we hand this in
+ * @version 1.0
  */
-class Sensors {
+class Sensors { 
     public:
-        // Constructors, and Destructors        
+        // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Constructors, and Destructors ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
         /**
-         * @brief Creates a new Sensors Object.
+         * Creates a new Sensors Object.
+         * @since 1.0
          */
         Sensors();
+    
+        /**
+         * Destructs the Sensors Object.
+         * @since 1.0
+         */
         ~Sensors();
     
-        // Sensor value returning methods
+        // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Sensor value returning methods ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
         /**
-         * // TODO Write the Documentation of what this does
-         * @brief What this function does goes here.
-         * @return what this function returns goes here.
-         */
-        bool ambientLight(); // TODO change the name of this function to better reflect its purpose
-    
-        /**
-         * @brief A method to detect rocks.
+         * A method to detect rocks.
+         *
          * @return wether or not the robot detected a rock.
+         * @since 1.0
          */
         bool rockDetected();
 
         /**
-         * @brief A method to detect boundries.
+         * A method to detect boundries.
+         *
          * @return wether or not the robot detected a boundry.
+         * @since 1.0
          */
         bool boundaryDetected();
     
         /** 
-         * @brief A method to detect cliffs.
+         * A method to detect cliffs.
+         *
          * @return wether or not the robot detected a cliff.
+         * @since 1.0
          */
         bool cliffDetected();
     
         /** 
-         * @brief A method to detect hills.
+         * A method to detect hills.
+         *
          * @return wether or not the robot detected a hill.
+         * @since 1.0
          */
         bool hillDetected();
     
         /** 
-         * @brief A method to get the heading of the robot.
+         * A method to get the heading of the robot.
+         *
          * @return the current azimuth rotation of the robot.
+         * @since 1.0
          */
         float getCompassHeading();
     
-    private:
-        // Constants
-        /** Write the Documentation of what this is used for */
-        const int infraredPin = A0;
-        /** Write the Documentation of what this is used for */
-        const int leftLightPin = A1;
-        /** Write the Documentation of what this is used for */
-        const int rightLightPin = A2;
-        /** Write the Documentation of what this is used for */
-        const int trigPin = 2;
-        /** Write the Documentation of what this is used for */
-        const int echoPin = 3;
-    
-        // Thresholds
-        /** Write the Documentation of what this is used for */
-        const int infraredThreshold = 500; // Adjust this value based on your environment TODO, make a function that does this, because this is bandate
-        /** Write the Documentation of what this is used for */
-        const int lightThreshold = 800; // Adjust this value based on your environment TODO, make a function that does this, because this is bandate
-        /** Write the Documentation of what this is used for */
-        static const int GPIOPinAmbient = 4;
-    
-        // Sensor instances
-        NewPing sonar;
-        QMC5883LCompass compass;
+        // TODO change the name of this function to better reflect its purpose, and TODO Write the Documentation of what this does.
+        /**
+         * What this function does goes here.
+         *
+         * @return what this function returns goes here.
+         * @since 1.0
+         */
+        bool ambientLight();
+   
+    private:     
+        // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Sensor instances ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+        /** This is the sonar sensor that is used to measure the distance of the robot to something. */
+        const NewPing SONAR;
+        /** This is the compass that is used to keep track of the direction the robot is facing. */
+        const QMC5883LCompass COMPASS;
 };
