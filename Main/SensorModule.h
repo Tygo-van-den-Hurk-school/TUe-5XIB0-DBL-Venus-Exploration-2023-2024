@@ -43,74 +43,74 @@
  * @version 1.0
  */
 class Sensors { 
-    public:
-        // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Constructors, and Destructors ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
-        /**
-         * Creates a new Sensors Object.
-         * @since 1.0
-         */
-        Sensors();
-    
-        /**
-         * Destructs the Sensors Object.
-         * @since 1.0
-         */
-        ~Sensors();
-    
-        // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Sensor value returning methods ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
-        /**
-         * A method to detect rocks.
-         *
-         * @return wether or not the robot detected a rock.
-         * @since 1.0
-         */
-        bool rockDetected();
+  public:
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Constructors, and Destructors ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    /**
+     * Creates a new Sensors Object.
+     * @since 1.0
+     */
+    Sensors();
 
-        /**
-         * A method to detect boundries.
-         *
-         * @return wether or not the robot detected a boundry.
-         * @since 1.0
-         */
-        bool boundaryDetected();
-    
-        /** 
-         * A method to detect cliffs.
-         *
-         * @return wether or not the robot detected a cliff.
-         * @since 1.0
-         */
-        bool cliffDetected();
-    
-        /** 
-         * A method to detect hills.
-         *
-         * @return wether or not the robot detected a hill.
-         * @since 1.0
-         */
-        bool hillDetected();
-    
-        /** 
-         * A method to get the heading of the robot.
-         *
-         * @return the current azimuth rotation of the robot.
-         * @since 1.0
-         */
-        float getCompassHeading();
-    
-        // TODO change the name of this function to better reflect its purpose, and TODO Write the Documentation of what this does.
-        /**
-         * What this function does goes here.
-         *
-         * @return what this function returns goes here.
-         * @since 1.0
-         */
-        bool ambientLight();
-   
-    private:     
-        // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Sensor instances ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
-        /** This is the sonar sensor that is used to measure the distance of the robot to something. */
-        const NewPing SONAR;
-        /** This is the compass that is used to keep track of the direction the robot is facing. */
-        const QMC5883LCompass COMPASS;
+    /**
+     * Destructs the Sensors Object.
+     * @since 1.0
+     */
+    ~Sensors();
+
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Sensor value returning methods ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    /**
+     * A method to detect rocks.
+     *
+     * @return wether or not the robot detected a rock.
+     * @since 1.0
+     */
+    bool rockDetected();
+
+    /**
+     * A method to detect boundries.
+     *
+     * @return wether or not the robot detected a boundry.
+     * @since 1.0
+     */
+    bool boundaryDetected();
+
+    /** 
+     * A method to detect cliffs.
+     *
+     * @return wether or not the robot detected a cliff.
+     * @since 1.0
+     */
+    bool cliffDetected();
+
+    /** 
+     * A method to detect hills.
+     *
+     * @return wether or not the robot detected a hill.
+     * @since 1.0
+     */
+    bool hillDetected();
+
+    /** 
+     * A method to get the heading of the robot.
+     *
+     * @return the current azimuth rotation of the robot.
+     * @since 1.0
+     */
+    float getCompassHeading();
+
+    // TODO change the name of this function to better reflect its purpose, and TODO Write the Documentation of what this does.
+    /**
+     * What this function does goes here.
+     *
+     * @return what this function returns goes here.
+     * @since 1.0
+     */
+    bool ambientLight();
+
+  private:
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Sensor instances ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    /** This is the sonar sensor that is used to measure the distance of the robot to something. */
+    const NewPing SONAR;
+    /** This is the compass that is used to keep track of the direction the robot is facing. */
+    const QMC5883LCompass COMPASS;
 };
