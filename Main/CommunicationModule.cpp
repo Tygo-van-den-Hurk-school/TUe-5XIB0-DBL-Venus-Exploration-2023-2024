@@ -1,14 +1,22 @@
 #include "CommunicationModule.h"
 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Constructors, and Destructors ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 Communication::Communication(){
+    
     WiFi.mode(WIFI_STA);
-    if(BOARD) {
-      board = {0, 0, 0, 0, 0, 0, 0, 0};
-    } else {
-      board = {0, 0, 0, 0, 0, 0, 0, 0};
-    }
+    
+    // if(BOARD) {
+    //   board = {0, 0, 0, 0, 0, 0, 0, 0};
+    // } else {
+    //   board = {0, 0, 0, 0, 0, 0, 0, 0};
+    // }
+    board = {0, 0, 0, 0, 0, 0, 0, 0}; // TODO remove unused if statement...
+
+    /* Doing the setup */ {
     senderSetup();
     receiverSetup();
+    }
 }
 
 Communication::~Communication(){
@@ -101,7 +109,7 @@ int Communication::send(sendMessage myData){
   }
 }
 
-void Communication::onReceive(const uint8_t * mac, const uint8_t * INCOMMING_DATA, int LENGTH) {
+void Communication::onReceive(const uint8_t * mac, const uint8_t * INCOMMING_DATA, int LENGTH) { // TODO awnser this question, why is the param "mac" here if it is not used?
     memcpy(&myData, INCOMMING_DATA, sizeof(myData));
     printf(myData.status);
 }

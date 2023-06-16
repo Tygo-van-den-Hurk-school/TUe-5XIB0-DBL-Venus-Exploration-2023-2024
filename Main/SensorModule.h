@@ -1,11 +1,13 @@
 #pragma once
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 #include <NewPing.h>
 #include <Wire.h>
 #include <QMC5883LCompass.h>
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 /** this is the threshold that the infrared sensor needs to pass for it to offically "detect" something. */
 #define INFRA_RED_THRESHOLD             500
 /** this is the threshold that the light sensor needs to pass for it to offically "detect" something. */
@@ -26,14 +28,15 @@
  * The pin we will be using for the sonar. setting this to high will trigger a sonar pulse that 
  * will then be eventually temperarily set the "ECHO_SONAR_GPIO_PIN" to high.
  */
-#define TRIGGER_SONAR_GPIO_PIN  2
+#define TRIGGER_SONAR_GPIO_PIN          2
 /** 
  * The pin we will be using for the sonar. will then be eventually temperarily set to high,
  * when the "TRIGGER_SONAR_GPIO_PIN" was set to high.
  */
-#define ECHO_SONAR_GPIO_PIN     3
+#define ECHO_SONAR_GPIO_PIN             3
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~~~ Class ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Class ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 // TODO anwser this question: Why is this class not static/singleton? its not modular anyways...
 /**
  * @class A class that stores all the sensors, and is capable of returning their values.
@@ -44,7 +47,8 @@
  */
 class Sensors { 
   public:
-    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Constructors, and Destructors ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~ Constructors and Destructors ~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
     /**
      * Creates a new Sensors Object.
      * @since 1.0
@@ -57,7 +61,8 @@ class Sensors {
      */
     ~Sensors();
 
-    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Sensor value returning methods ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  Sensor value returning methods  ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
     /**
      * A method to detect rocks.
      *
@@ -108,7 +113,8 @@ class Sensors {
     bool ambientLight();
 
   private:
-    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Sensor instances ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Sensor instances ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+    
     /** This is the sonar sensor that is used to measure the distance of the robot to something. */
     const NewPing SONAR;
     /** This is the compass that is used to keep track of the direction the robot is facing. */

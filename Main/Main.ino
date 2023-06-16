@@ -3,9 +3,9 @@
 #include "SensorModule.h"
 #include "CommunicationModule.h"
 #include <Arduino.h>                // TODO awnser this question: Why is this in here? Arduino includes this by default.
-#include <ESP32Servo.h>             // TODO awnser this question: were we not using "Servo.h"? is that less buggy?
+#include <ESP32Servo.h>
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 /** The GPIO pin used for controling the head servo. */
 #define HEAD_SERVO_GPIO_PIN   25
 /** The GPIO pin used for controling the claw servo. */
@@ -34,7 +34,7 @@
 /** the speed at which the Serial monitor parses the incoming bits. */
 #define DEFAULT_SERIAL_SPEED  115200
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Objects ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~ Objects ~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 /** The object that is responsible for all the movement of the robot. */
 const Movement movement;            // TODO remove this when the functions become static.
 /** The object that is responsible processing all the sensor data of the robot. */
@@ -42,7 +42,7 @@ const Sensors sensors;              // TODO remove this when the functions becom
 /** The object that is responsible for all the communications of the robot. */
 const Communication communication;  // TODO remove this when the functions become static.
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ Arduino main-functions ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~ Arduino main-functions ~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 /**
  * this method is the main method where the code starts running. This method is only run once. After this, the method `loop()`
  * is run indefinitely. Meaning that that one will run until reset, or powerloss.
@@ -65,8 +65,8 @@ void setup() {
 }
 
 /**
- * Loops until reset, or powerloss. This function fetched the current situation that the robot is in, and 
- * for each case does the logic that belongs to that case.
+ * Loops until reset, or powerloss. This function fetched the current situation that the robot is in, and for each case
+ * does the logic that belongs to that case.
  */
 void loop() {
   const int CURRENT_SITUATION = (getSituation());
@@ -95,9 +95,11 @@ void loop() {
   delay(DEFAULT_DELAY_TIME);
 }
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Helper-functions ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Helper-functions ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 /**
- * Finds in what situation the robot is in, and returns that.
+ * Finds in what situation the robot is in, and returns that. Possible situations are: "ROCK_IS_DETECTED",
+ * "HILL_IS_DETECTED", "CLIFF_IS_DETECTED", "BOUNDARY_IS_DETECTED", and "NOT_UNDERSTOOD". For each situation there is
+ * different logic to handle it.
  *
  * @return and int that represents the situation that the robot is in.
  */
@@ -105,14 +107,14 @@ int getSituation() { // TODO move this function into its own file
   
   /* checking if a rock is detected */ {
     const bool ROCK_DETECTED = (sensors.rockDetected());
-    if (ROCK_IS_DETECTED) {
+    if (ROCK_DETECTED) {
       return ROCK_IS_DETECTED;
     }
   }
  
   /* checking if a hill is detected */ {
     const bool HILL_DETECTED = (sensors.hillDetected);
-    if (HILL_IS_DETECTED) {
+    if (HILL_DETECTED) {
       return HILL_IS_DETECTED;
     }
   }
@@ -134,7 +136,7 @@ int getSituation() { // TODO move this function into its own file
   return NOT_UNDERSTOOD;
 }
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  should-not-be-here-functions ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  should-not-be-here-functions  ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 /** The servo that controls the head of the robot. */
 const Servo servoHead;              // TODO awnser this question: Why is this in here in this file?
 /** The servo that controls the claws of the robot. */
@@ -143,7 +145,7 @@ const Servo servoClaws;             // TODO awnser this question: Why is this in
 /**
  * Opens and closes the claws.
  */
-void clawsTurn(){ // TODO awnser this question: Why is this in here in this file?
+void clawsTurn() { // TODO awnser this question: Why is this in here in this file?
   servoClaws.attach(CLAWS_SERVO_GPIO_PIN);
   
   /* Opening Claws */ {
@@ -170,7 +172,7 @@ void clawsTurn(){ // TODO awnser this question: Why is this in here in this file
  * 
  * TODO awnser this question: what is the purpose of this method?
  */
-void headTurn(){ // TODO awnser this question: Why is this in here in this file?
+void headTurn() { // TODO awnser this question: Why is this in here in this file?
   servoHead.attach(HEAD_SERVO_GPIO_PIN);
   
   // if something detected at x angle store that angle // TODO awnser this question: is this a TODO?

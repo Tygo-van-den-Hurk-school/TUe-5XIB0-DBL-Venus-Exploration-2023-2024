@@ -1,6 +1,7 @@
 #include "SensorModule.h"
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~ Constructors, and Destructors ~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 Sensors::Sensors() { 
   /* Initialize the compass */ {
     this -> COMPASS.init();
@@ -13,13 +14,14 @@ Sensors::Sensors() {
   }
 }
 
-// Sensors::~Sensors(){
-// If it does nothing, do not write it. It is just extra lines. 
-// Plus I do not expect an arduino to destruct objects when shut
-// down due to power loss. So is this even needed?
-// }
+Sensors::~Sensors(){
+  // If it does nothing, do not write it. It is just extra lines. 
+  // Plus I do not expect an arduino to destruct objects when shut
+  // down due to power loss. So is this even needed?
+}
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Sensor value returning methods ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+
 bool Sensors::ambientLight() { 
     const int VALUE = (50); // TODO change the name of this variable to better reflect its purpose
     const int AMBIENT_LIGHT = analogRead(AMBIENT_LIGHT_SENSOR_GPIO_PIN);

@@ -1,6 +1,10 @@
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+
 #include "MovementModule.h"
 #include <Arduino.h>
 #include <ESP32Servo.h>
+
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Constructors, and Destructors ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 
 Movement::Movement() {
   this -> coordinates.x = 0.0;
@@ -8,12 +12,13 @@ Movement::Movement() {
 }
 
 Movement::~Movement(){
-// If it does nothing, do not write it. It is just extra lines. 
-// Plus I do not expect an arduino to destruct objects when shut
-// down due to power loss. So is this even needed?
+  // If it does nothing, do not write it. It is just extra lines. 
+  // Plus I do not expect an arduino to destruct objects when shut
+  // down due to power loss. So is this even needed?
 }
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Methods that move/rotate the robot ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  Methods that move/rotate the  robot ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 void Movement::moveForward(const int DEGREES) {
   /* Attaching the wheels. */ {
     printf("[%f] : MovementModule.moveBackward() ==> Moving forwards. \n", System.milis()); // TODO replace with static function Comunications.println();

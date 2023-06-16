@@ -1,10 +1,12 @@
 #pragma once
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+
 #include <ESP32Servo.h>
 //#include <vector>
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+
 /** This is the GPIO pin that will be used for the left-servo. */
 #define LEFT_MOTOR_PIN      12
 /** This is the GPIO pin that will be used for the right-servo. */
@@ -25,7 +27,8 @@
 /** Defines the delay between a degree turned, or a degree moved forward. */
 #define DEFAULT_DELAY_TIME  20
 
-// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ Data-Structures ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Data-Structures ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+
 /**
  * A data structure to hold the coordinates.
  */
@@ -54,6 +57,7 @@ struct MovementAction{
 }; 
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~~~ Class ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
+
 /**
  * @class this class is used to control the robot's movement.
  * @author Tygo van den Hurk, student at TU/e (1705709)
@@ -75,6 +79,8 @@ class Movement {
     float currentAngle = 0;
 
   public:
+    // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~ Constructors, and Destructors ~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
     /**
      * constructs a new `Movement` Object.
      * @since 1.0
@@ -87,6 +93,7 @@ class Movement {
      */
     ~Movement();
 
+  // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~ Methods that move/rotate the  robot ~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 
     /**
      * Moves the robot forward indefinitely with a certain speed.
