@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file this file defines the methods for the sensormodule class.
+ * @author Tygo van den Hurk, student at TU/e (1705709)
+ * @author David Constantin, student at TU/e (1569139)
+ * @author Jerry Liang, student at TU/e (1522019)
+ * @author Saviël van Wijngaarden, student at TU/e (???????)
+ */
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 
 #include <NewPing.h>
@@ -45,7 +52,8 @@
  * @class A class that stores all the sensors, and is capable of returning their values.
  * @author Tygo van den Hurk, student at TU/e (1705709)
  * @author David Constantin, student at TU/e (1569139)
- * // TODO Other people, add your names, and student numbers in the same way, do not remove this comment until we hand this in
+ * @author Jerry Liang, student at TU/e (1522019)
+ * @author Saviël van Wijngaarden, student at TU/e (???????)
  * @version 1.0
  */
 class Sensors { 

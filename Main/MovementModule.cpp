@@ -1,3 +1,10 @@
+/**
+ * @file this file defines the methods for the movement header file.
+ * @author Tygo van den Hurk, student at TU/e (1705709)
+ * @author David Constantin, student at TU/e (1569139)
+ * @author Jerry Liang, student at TU/e (1522019)
+ * @author Saviël van Wijngaarden, student at TU/e (???????)
+ */
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
 
 #include "MovementModule.h"
@@ -21,7 +28,7 @@ Movement::~Movement(){
 
 void Movement::moveForward(const int DEGREES) {
   /* Attaching the wheels. */ {
-    printf("[%f] : MovementModule.moveBackward() ==> Moving forwards. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Moving forwards. \n"); // TODO replace with static function Comunications.println();
     rightWheel.attach(RIGHT_MOTOR_PIN);
     leftWheel.attach(LEFT_MOTOR_PIN);
   }
@@ -36,7 +43,7 @@ void Movement::moveForward(const int DEGREES) {
   }
   
   /* Detaching the wheels. */ {
-    printf("[%f] : MovementModule.moveBackward() ==> Stopped moving forward. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Stopped moving forward. \n", System.milis()); // TODO replace with static function Comunications.println();
     rightWheel.detach();
     leftWheel.detach();
   }
@@ -44,7 +51,7 @@ void Movement::moveForward(const int DEGREES) {
 
 void Movement::moveBackward(const int DEGREES) {
   /* Attaching the wheels. */ {
-    printf("[%f] : MovementModule.moveBackward() ==> Moving backwards. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Moving backwards. \n"); // TODO replace with static function Comunications.println();
     rightWheel.attach(RIGHT_MOTOR_PIN);
     leftWheel.attach(LEFT_MOTOR_PIN);
   }
@@ -59,7 +66,7 @@ void Movement::moveBackward(const int DEGREES) {
   }
   
   /* Detaching the wheels. */ {
-    printf("[%f] : MovementModule.moveBackward() ==> Stopped moving backward. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Stopped moving backward.\n"); // TODO replace with static function Comunications.println();
     rightWheel.detach();
     leftWheel.detach();
   }
@@ -67,7 +74,7 @@ void Movement::moveBackward(const int DEGREES) {
 
 void Movement::turnLeft(const float ANGLE){
   /* Attaching the wheels. */ {
-    printf("[%f] : MovementModule.turnLeft() ==> Turning left %f degrees. \n", System.milis(), ANGLE); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Turning left %f degrees. \n", ANGLE); // TODO replace with static function Comunications.println();
     leftWheel.attach(LEFT_MOTOR_PIN);
   }
   
@@ -80,14 +87,14 @@ void Movement::turnLeft(const float ANGLE){
   }
   
   /* Detaching the wheels. */ {
-    printf("[%f] : MovementModule.turnLeft() ==> Stopped turning left. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Stopped turning left. \n"); // TODO replace with static function Comunications.println();
     leftWheel.detach();
   }
 }
 
 void Movement::turnRight(const float ANGLE){
   /* Attaching the wheels. */ {
-    printf("[%f] : MovementModule.turnRight() ==> Turning right %f degrees. \n", System.milis(), ANGLE); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Turning right %f degrees. \n", ANGLE); // TODO replace with static function Comunications.println();
     rightWheel.attach(RIGHT_MOTOR_PIN);
   }
   
@@ -100,14 +107,14 @@ void Movement::turnRight(const float ANGLE){
   }
   
   /* Detaching the wheels. */ {
-    printf("[%f] : MovementModule.turnRight() ==> Stopped turning right. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Stopped turning right. \n"); // TODO replace with static function Comunications.println();
     rightWheel.detach();
   }
 }
 
 void Movement::stop(){
   /* Attaching the wheels. */ {
-    printf("[%f] : MovementModule.stop() ==> Stopping the robot. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Stopping the robot. \n"); // TODO replace with static function Comunications.println();
     rightWheel.attach(RIGHT_MOTOR_PIN);
     leftWheel.attach(LEFT_MOTOR_PIN);
   }
@@ -121,6 +128,6 @@ void Movement::stop(){
   /* Detaching the wheels. */ {
     rightWheel.detach();
     leftWheel.detach();
-    printf("[%f] : MovementModule.stop() ==> Stopped. \n", System.milis()); // TODO replace with static function Comunications.println();
+    printf("[MovementModule.moveBackward] ==> Stopped. \n"); // TODO replace with static function Comunications.println();
   }
 }

@@ -1,5 +1,12 @@
 #pragma once
 
+/**
+ * @file this file defines the methods for the movementmodule class.
+ * @author Tygo van den Hurk, student at TU/e (1705709)
+ * @author David Constantin, student at TU/e (1569139)
+ * @author Jerry Liang, student at TU/e (1522019)
+ * @author Saviël van Wijngaarden, student at TU/e (???????)
+ */
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
 
 #include <ESP32Servo.h>
@@ -62,7 +69,8 @@ struct MovementAction{
  * @class this class is used to control the robot's movement.
  * @author Tygo van den Hurk, student at TU/e (1705709)
  * @author David Constantin, student at TU/e (1569139)
- * // TODO Other people, add your names, and student numbers in the same way, do not remove this comment until we hand this in
+ * @author Jerry Liang, student at TU/e (1522019)
+ * @author Saviël van Wijngaarden, student at TU/e (???????)
  * @version 1.0
  */
 class Movement {

@@ -1,3 +1,10 @@
+/**
+ * @file this is the main file where the code starts to run.
+ * @author Tygo van den Hurk, student at TU/e (1705709)
+ * @author David Constantin, student at TU/e (1569139)
+ * @author Jerry Liang, student at TU/e (1522019)
+ * @author Saviël van Wijngaarden, student at TU/e (???????)
+ */
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  ~~~~ ~~ Libraries ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
 #include "MovementModule.h"
 #include "SensorModule.h"
@@ -82,9 +89,7 @@ void loop() {
         // TODO put logic here
         break;
       default:
-      Serial.print("[ ERR ] ==> Situation not reconised: ");
-      Serial.print(CURRENT_SITUATION);
-      Serial.print(".\n");
+      printf("[ Main.loop ] ==> Error: Situation not reconised: %f.\n", CURRENT_SITUATION);
     }
   }
 
