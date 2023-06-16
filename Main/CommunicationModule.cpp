@@ -34,6 +34,8 @@ Communication::~Communication() {
   // down due to power loss. So is this even needed?
 }
 
+// ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~ Methods for sending and receiving data ~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 void Communication::onDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
   printf("\r\n[Communication.onDataSent] ==> Last Packet Send Status:\t");
   
