@@ -35,6 +35,9 @@
  */
 #define ECHO_SONAR_GPIO_PIN             3
 
+/** TODO Discribe what this does. */
+#define QMC5883L_RANGE_8GA              20
+
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Class ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 
 // TODO anwser this question: Why is this class not static/singleton? its not modular anyways...
@@ -114,7 +117,7 @@ class Sensors {
 
   private:
     // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Sensor instances ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ 
-    
+
     /** This is the sonar sensor that is used to measure the distance of the robot to something. */
     const NewPing SONAR;
     /** This is the compass that is used to keep track of the direction the robot is facing. */

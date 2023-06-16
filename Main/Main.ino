@@ -2,7 +2,7 @@
 #include "MovementModule.h"
 #include "SensorModule.h"
 #include "CommunicationModule.h"
-#include <Arduino.h>                // TODO awnser this question: Why is this in here? Arduino includes this by default.
+#include <Arduino.h>
 #include <ESP32Servo.h>
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~ Constants ~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
@@ -36,13 +36,14 @@
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~ Objects ~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
 /** The object that is responsible for all the movement of the robot. */
-const Movement movement;            // TODO remove this when the functions become static.
+const Movement movement = Movement();            // TODO remove this when the functions become static.
 /** The object that is responsible processing all the sensor data of the robot. */
-const Sensors sensors;              // TODO remove this when the functions become static.
+const Sensors sensors = Sensors();              // TODO remove this when the functions become static.
 /** The object that is responsible for all the communications of the robot. */
-const Communication communication;  // TODO remove this when the functions become static.
+const Communication communication = Communication();  // TODO remove this when the functions become static.
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~ Arduino main-functions ~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 /**
  * this method is the main method where the code starts running. This method is only run once. After this, the method `loop()`
  * is run indefinitely. Meaning that that one will run until reset, or powerloss.
@@ -51,13 +52,7 @@ void setup() {
   /* Setting up Serial */ {
     Serial.begin(DEFAULT_SERIAL_SPEED); 
   }
-  
-  /* creating the objects */ {                          // TODO remove this when the functions become static.
-    movement = Movement();                              // TODO remove this when the functions become static.
-    sensors = Sensors();                                // TODO remove this when the functions become static.
-    communication = Communication();                    // TODO remove this when the functions become static.
-  }
-  
+    
   /* Testing Communications? */ {                       // TODO awnser this question: Why is this in here?
     strcpy(communication.myData.status, "something");   // TODO awnser this question: Why is this in here?
     communication.send(communication.myData);           // TODO awnser this question: Why is this in here?
@@ -70,6 +65,7 @@ void setup() {
  */
 void loop() {
   const int CURRENT_SITUATION = (getSituation());
+  printf("[ Main.loop ] ==> Situation: f%.\n", CURRENT_SITUATION);
   
   /* doing the logic for each situation. */ {
     switch (CURRENT_SITUATION) {
@@ -96,6 +92,7 @@ void loop() {
 }
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ Helper-functions ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 /**
  * Finds in what situation the robot is in, and returns that. Possible situations are: "ROCK_IS_DETECTED",
  * "HILL_IS_DETECTED", "CLIFF_IS_DETECTED", "BOUNDARY_IS_DETECTED", and "NOT_UNDERSTOOD". For each situation there is
@@ -137,6 +134,7 @@ int getSituation() { // TODO move this function into its own file
 }
 
 // ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~  should-not-be-here-functions  ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~ ~~~~
+
 /** The servo that controls the head of the robot. */
 const Servo servoHead;              // TODO awnser this question: Why is this in here in this file?
 /** The servo that controls the claws of the robot. */
@@ -153,7 +151,7 @@ void clawsTurn() { // TODO awnser this question: Why is this in here in this fil
       servoClaws.write(posDegrees);
       delay(DEFAULT_DELAY_TIME);
     }
-    printf("[LOG]: opened claw\n");
+    printf("[Main.clawsTurn] ==> opened claw\n");
   }
   
   /* Closing Claws */ {
@@ -161,7 +159,7 @@ void clawsTurn() { // TODO awnser this question: Why is this in here in this fil
       servoClaws.write(posDegrees);
       delay(DEFAULT_DELAY_TIME);
     }
-    printf("[LOG]: closed claw\n");
+    printf("[Main.clawsTurn] ==> closed claw\n");
   }
 
   servoClaws.detach();
@@ -182,7 +180,7 @@ void headTurn() { // TODO awnser this question: Why is this in here in this file
       servoHead.write(posDegrees);
       delay(DEFAULT_DELAY_TIME);
     }
-    printf("[LOG]: Head turned left\n");
+    printf("[Main.headTurn] ==> Head turned left.\n");
   }
   
   /* Turning head Right */ {
@@ -190,7 +188,7 @@ void headTurn() { // TODO awnser this question: Why is this in here in this file
       servoHead.write(posDegrees);
       delay(DEFAULT_DELAY_TIME);
     }
-    printf("[LOG]: Head turned right\n");
+    printf("[Main.headTurn] ==> Head turned right.\n");
   }
 
   /* putting head back in original position */ {
@@ -198,6 +196,7 @@ void headTurn() { // TODO awnser this question: Why is this in here in this file
       servoHead.write(posDegrees);
       delay(DEFAULT_DELAY_TIME);
     }
+    printf("[Main.headTurn] ==> Head put back at original position.\n");
   }
   
   servoHead.detach();
