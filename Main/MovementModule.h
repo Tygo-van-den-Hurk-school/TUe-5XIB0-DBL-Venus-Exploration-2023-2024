@@ -83,6 +83,9 @@ class Movement {
     /** The servo to which it controles the right wheel. */
     const Servo RIGHT_WHEEL;
 
+    /** keeps track of what movement the robot is making */
+    int movementDirection = NOT_MOVING;
+
     /** Stores the angle with which the robot is moving. */
     float currentAngle = 0;
 
